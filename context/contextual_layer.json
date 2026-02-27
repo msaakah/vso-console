@@ -1,10 +1,92 @@
 {
-  "company": "Lentra",
-  "positioning": "Enterprise lending SaaS platform",
-  "strategic_context": [
-    "Strong in digital lending infrastructure",
-    "Expanding into AI-led decisioning",
-    "Enterprise GTM with banks and NBFCs"
-  ],
-  "operating_style": "Board-grade, capital-efficient growth"
+  "memo_version": "v2_contextual_intelligence",
+  "company_identity": {
+    "profile": "Technology Solution Provider with a full-stack digital platform for lending, enabling banks in their assets businesses.",
+    "architecture_principles": [
+      "API-first with Microservice Architecture",
+      "AI embedded",
+      "Scalable and Secure by Design"
+    ],
+    "product_ecosystem": [
+      "Loan Origination System (LOS)",
+      "Loan Management System (LMS)",
+      "User Access Management",
+      "API Enterprise Bus",
+      "Bureau Connector",
+      "Rule Engine"
+    ],
+    "market_scope": "Designed to support all loan journeys across the consumer and business spectrum."
+  },
+  "about_the_company": {
+    "business_model_reality": {
+      "Primary Revenue Model": "Transactional",
+      "Pricing Basis": "Volume",
+      "Buyer Persona": "CIO, Business Head, CRO",
+      "User Persona": "Sales, Credit, Ops",
+      "Sales Motion": "Enterprise, Mid-market, SMB",
+      "Avg Deal Size (Range)": "1 cr"
+    },
+    "customer_and_demand_characteristics": {
+      "Core ICP": "Banks, NBFC",
+      "Buying Cycle Length": "Long",
+      "Implementation Intensity": "High",
+      "Time-to-Value": "Long",
+      "Switching Cost": "High",
+      "Mission Criticality": "Core Systems"
+    },
+    "product_and_delivery_reality": {
+      "Customization Level": "High",
+      "Services Dependency": "Heavy",
+      "Implementation Ownership": "Client Led",
+      "Typical Go-Live Time": "8-10 Months",
+      "Delivery Bottlenecks": "Product / Tech / People / Client"
+    },
+    "strategic_constraints": {
+      "Regulatory Constraints": "RBI, Data Residency",
+      "Client Concentration Risk": "High",
+      "Talent Constraints": "Medium",
+      "Capital Constraints": "Well capitalized",
+      "Non-Negotiables": "Security, Uptime, RBI Compliance"
+    }
+  },
+  "strategic_north_star": {
+    "Boardroom Goal": "Achieve 400 cr revenue by FY28 | Atleast 70% Gross Margin by FY27 | 1 Billion USD valuation by FY28",
+    "Founder’s Secret Goal": "Do an IPO by FY28"
+  },
+  "priorities_stack": {
+    "active": [
+      "Aggressive Growth: (New Logo acquisition, market share)",
+      "Operational Speed: (Faster implementation, implementation velocity)",
+      "Churn Defense: (Retention, CSAT recovery, competitive defense)"
+    ],
+    "dormant": [
+      "Path to Profitability: (Burn reduction, EBITDA focus)",
+      "Capital Readiness: (Cleaning metrics for Fundraise/Exit/Secondary)",
+      "Margin Expansion: (COGS optimization, moving from Bespoke to SaaS)"
+    ]
+  },
+  "the_whisper_layer": {
+    "Sales Narrative": "Delayed implementations have damaged market perception, hindering new sales. Product claims readiness but execution takes too long.",
+    "Implementation Narrative": "Delays are driven by client-side requirement changes, not internal execution.",
+    "Product Narrative": "Product is best-in-class; Sales is simply failing to close.",
+    "Management Narrative": "Complete delivery failure by Product and Implementation; top management changes are being initiated.",
+    "Strategy Narrative": "Fixed-fee models are failing for large lenders; professional services model required for customization. Sales team is too small and founder-dependent."
+  },
+  "motivation_audit": {
+    "Sales": "Flat payout basis wins; at least 8% of new revenue as incentive.",
+    "CSM": "Flat payout basis wins; at least 6% of new revenue as incentive.",
+    "Product": "No incentive for the product VPs or leaders.",
+    "Implementations": "No incentive for the implementation VPs or leaders."
+  },
+  "institutional_memory": {
+    "Historical Promises": "Forecasts missed every quarter; achieving only 60% of budgeted revenue.",
+    "Past Pivot": "Return to founder-led sales 12 months ago; no success to date. Currently hiring sales reps.",
+    "Market Perception": "Known for significant implementation delays."
+  },
+  "market_and_competitive_intelligence": [
+    "Severe pricing pressures for smaller lenders; outbid even on 50L deals.",
+    "SalesForce eating enterprise market by bundling all journeys.",
+    "Finbox (recently funded) aggressively targeting mid-market.",
+    "Nucleus strongly positioned in LMS with heavy financial muscle."
+  ]
 }

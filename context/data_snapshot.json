@@ -1,10 +1,164 @@
 {
-  "revenue_run_rate_cr": 210,
-  "fy27_target_cr": 270,
-  "gross_margin": 0.65,
-  "focus_areas": [
-    "Upsell and cross-sell",
-    "New logos",
-    "AI monetization"
-  ]
+  "data_version": "v2_structured",
+  "tabs": {
+    "Detailed Revenue": {
+      "time_bound_data": {
+        "Q1_FY26": {
+          "total_revenue": 44.71,
+          "by_product": {
+            "BREx": 1.75,
+            "GoNoGo": 3.67,
+            "Multibureau": 5.7,
+            "TransferX": 0.2,
+            "LMS": 0.2,
+            "API - Request Response Log": 0.18,
+            "Cadenz": 0.6
+          },
+          "by_type": {
+            "Implementation Fees": 3.0,
+            "Professional Services": 4.3,
+            "Recurring Revenue": 37.3
+          }
+        },
+        "Q2_FY26": {
+          "total_revenue": 45.5,
+          "by_product": {
+            "BREx": 3.72,
+            "GoNoGo": 35.29,
+            "Multibureau": 6.0,
+            "TransferX": 0.1,
+            "LMS": 0.326,
+            "API - Request Response Log": 0.3
+          },
+          "by_type": {
+            "Implementation Fees": 0.6,
+            "Professional Services": 5.7,
+            "Recurring Revenue": 39.2
+          }
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Customer", "Product", "Revenue Type"],
+      "notes": ""
+    },
+    "Detailed Active Pipeline": {
+      "time_bound_data": {},
+      "non_time_bound_aggregates": {
+        "aggregation_type": "non-time-bound",
+        "total_q3_pipeline": 26.09,
+        "total_q4_pipeline": 71.714,
+        "by_product_q3": {
+          "AI": 1.5,
+          "COE": 1.94,
+          "GoNoGo - BL": 2.5,
+          "LMS": 0.0,
+          "Dealer Portal": 4.0,
+          "TransferX": 1.33
+        },
+        "by_stage": {
+          "Solution & Commercial Proposal": {"Q3 Pipeline ": 11.21, "Q4 Pipeline": 13.97},
+          "Value Proposition": {"Q3 Pipeline ": 14.88, "Q4 Pipeline": 57.74}
+        }
+      },
+      "key_dimensions": ["Customer", "Product", "Stage"],
+      "notes": "Pipeline for future quarters."
+    },
+    "RMG Data": {
+      "time_bound_data": {},
+      "non_time_bound_aggregates": {
+        "aggregation_type": "non-time-bound",
+        "total_headcount": 688.0,
+        "total_ctc": 1304159272.0,
+        "by_cost_group": {
+          "Product": {"Headcount": 225.0, "CTC": 482903231.0},
+          "Implementation": {"Headcount": 158.0, "CTC": 295208785.0},
+          "Client Delivery": {"Headcount": 114.0, "CTC": 167841030.0},
+          "Cloud & Infra": {"Headcount": 50.0, "CTC": 83108602.0},
+          "G&A": {"Headcount": 37.0, "CTC": 91098806.0},
+          "Sales & Marketing": {"Headcount": 20.0, "CTC": 94553043.0},
+          "Platform Team": {"Headcount": 29.0, "CTC": 43574230.0},
+          "Platform Team - SD": {"Headcount": 55.0, "CTC": 45871545.0}
+        }
+      },
+      "key_dimensions": ["Cost Group", "Project / Customer"],
+      "notes": "Organizational headcount and cost snapshot."
+    },
+    "Budget vs Forecast vs Actual": {
+      "time_bound_data": {
+        "Q1_FY26": {
+          "Revenue": {"Budget": 59.0, "Forecast": 55.0, "Actuals": 45.0},
+          "Total Cost": {"Budget": 49.0, "Forecast": 50.0, "Actuals": 50.0}
+        },
+        "Q2_FY26": {
+          "Revenue": {"Budget": 80.0, "Forecast": 54.0, "Actuals": 46.0},
+          "Total Cost": {"Budget": 59.0, "Forecast": 53.0, "Actuals": 51.0}
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Category"],
+      "notes": ""
+    },
+    "Sales Quota Achievement": {
+      "time_bound_data": {
+        "Q1_FY26": {
+          "total_quota": 58.0,
+          "total_achievement": 4.15,
+          "by_type": {"Client Success": 3.15, "New Logos": 1.0}
+        },
+        "Q2_FY26": {
+          "total_quota": 58.0,
+          "total_achievement": 3.08,
+          "by_type": {"Client Success": 3.08, "New Logos": 0.0}
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Rep Name", "Type"],
+      "notes": ""
+    },
+    "Cash Position": {
+      "time_bound_data": {
+        "Q1_FY26": {
+          "total_burn": 3.9,
+          "closing_cash": 167.0,
+          "avg_runway": 57.29
+        },
+        "Q2_FY26": {
+          "total_burn": 5.1,
+          "closing_cash": 144.0,
+          "avg_runway": 43.62
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Period"],
+      "notes": ""
+    },
+    "Marketing Data": {
+      "time_bound_data": {
+        "Q2_FY26": {
+          "leads": 29.0,
+          "qualified": 2.9,
+          "wins": 2.0,
+          "by_source": {"Website": 10.0, "Events": 8.0, "Linkedin": 6.0, "Emails": 5.0}
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Campaign Source"],
+      "notes": ""
+    },
+    "Metrics": {
+      "time_bound_data": {
+        "Q2_FY26": {
+          "Gross Margin": 0.648,
+          "EBITDA": -0.105,
+          "Burn Multiple": 5.6,
+          "SaaS Magic Number": 0.2,
+          "NDR": 1.06,
+          "LTV / CAC": 6.9
+        }
+      },
+      "non_time_bound_aggregates": {},
+      "key_dimensions": ["Metric"],
+      "notes": ""
+    }
+  }
 }

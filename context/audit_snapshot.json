@@ -1,12 +1,145 @@
 {
-  "known_issues": [
-    "Forecast accuracy gaps",
-    "Sales productivity variance",
-    "Working capital expansion"
+  "audit_version": "v1",
+  "audit_confidence": "Moderate",
+  "generated_from": "MSP 3.5-T Traceable Audit",
+
+  "system_read": {
+    "overall_health": "Fragile",
+    "momentum": "Negative",
+    "primary_failure_mode": "Commercial execution breakdown despite structurally strong product economics"
+  },
+
+  "structural_truths": [
+    "Product competitiveness appears strong relative to peers",
+    "Gross margins structurally healthy (~65–75%)",
+    "Delivery-heavy execution model introduces scaling friction",
+    "Revenue expansion engine not compounding cleanly"
   ],
-  "risks": [
-    "Enterprise deal concentration",
-    "In-house builds by customers",
-    "Execution bandwidth"
+
+  "existential_risks": [
+    {
+      "name": "Growth Engine Breakdown",
+      "evidence": [
+        "Multiple sales reps near 0% quota achievement",
+        "Pipeline skewed toward early-stage deals"
+      ],
+      "impact": "Revenue ceiling and stalled new logo velocity"
+    },
+    {
+      "name": "Forecast Credibility Erosion",
+      "evidence": [
+        "Repeated budget vs actual misses",
+        "Optimistic pipeline assumptions"
+      ],
+      "impact": "Capital narrative and investor confidence risk"
+    },
+    {
+      "name": "Delivery Value Disconnect",
+      "evidence": [
+        "High delivery cost concentration",
+        "Low CSAT across multiple accounts"
+      ],
+      "impact": "Churn risk and margin leakage"
+    }
+  ],
+
+  "structural_drags": [
+    {
+      "name": "Working Capital Instability",
+      "evidence": [
+        "Rising unbilled revenue",
+        "Volatile debtor cycles"
+      ],
+      "impact": "Cash conversion inefficiency"
+    },
+    {
+      "name": "Revenue Quality Volatility",
+      "evidence": [
+        "Expansion offset by contraction patterns"
+      ],
+      "impact": "Weak NRR compounding"
+    },
+    {
+      "name": "Margin Durability Risk",
+      "evidence": [
+        "Service-heavy delivery structure"
+      ],
+      "impact": "Potential margin compression at scale"
+    }
+  ],
+
+  "optimization_levers": [
+    {
+      "name": "Strong Software Economics Base",
+      "note": "Healthy gross margins provide recovery headroom"
+    },
+    {
+      "name": "Competitive Product Positioning",
+      "note": "No clear product-market inferiority detected"
+    }
+  ],
+
+  "core_dissonances": [
+    "Strong product positioning but weak commercial conversion",
+    "High delivery cost but low customer satisfaction",
+    "Aggressive growth ambition without funnel physics support",
+    "Revenue growth without corresponding cash realization"
+  ],
+
+  "commercial_diagnosis": {
+    "primary_issue": "Execution gap rather than product gap",
+    "sub_drivers": [
+      "Low sales productivity",
+      "Weak marketing conversion",
+      "Pipeline optimism bias"
+    ]
+  },
+
+  "delivery_diagnosis": {
+    "primary_issue": "Value translation failure",
+    "sub_drivers": [
+      "High cost base not translating into experience",
+      "Possible implementation inefficiencies"
+    ]
+  },
+
+  "capital_readiness": {
+    "status": "At Risk",
+    "drivers": [
+      "Forecast misses",
+      "Working capital volatility",
+      "Non-compounding growth"
+    ]
+  },
+
+  "advisory_anchors": [
+    "Growth problems are execution-led, not product-led",
+    "Fixing delivery efficiency unlocks both margin and retention",
+    "Forecast governance is a board-level priority",
+    "Working capital discipline is a near-term unlock"
+  ],
+
+  "system_momentum": {
+    "direction": "Negative",
+    "drivers": [
+      "Sales productivity collapse",
+      "Experience decay signals",
+      "Forecast credibility erosion"
+    ]
+  },
+
+  "key_unknowns": [
+    "Stage-wise win rates",
+    "CAC by channel",
+    "LTV by segment",
+    "Delivery cycle times",
+    "Customer profitability by cohort",
+    "Sales cycle length"
+  ],
+
+  "confidence_limiters": [
+    "Missing cohort retention curves",
+    "Lack of pipeline aging data",
+    "No win-loss diagnostic"
   ]
 }
