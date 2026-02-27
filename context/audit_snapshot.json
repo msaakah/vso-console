@@ -1,0 +1,12 @@
+{
+  "known_issues": [
+    "Forecast accuracy gaps",
+    "Sales productivity variance",
+    "Working capital expansion"
+  ],
+  "risks": [
+    "Enterprise deal concentration",
+    "In-house builds by customers",
+    "Execution bandwidth"
+  ]
+}
