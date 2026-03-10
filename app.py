@@ -657,10 +657,10 @@ CEO Question:
         with st.spinner("🧠 Analyzing with VSO reasoning engine..."):
             try:
                 response = client.chat.completions.create(
-                    model="gpt-4o-mini",  # Using the recommended model
+                    model="gpt-4o",  # Using the recommended model
                     messages=[{"role": "user", "content": full_context}],
                     temperature=0.7,
-                    max_tokens=2000
+                    max_tokens=4000
                 )
                 
                 reply = response.choices[0].message.content
