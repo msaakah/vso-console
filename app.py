@@ -318,7 +318,7 @@ Return ONLY a JSON object with these fields (use null if not found):
 """
         
         response = client.chat.completions.create(
-            model="gpt-5-mini",
+            model="gpt-4o",
             messages=[{"role": "user", "content": extraction_prompt}],
             response_format={"type": "json_object"}
         )
