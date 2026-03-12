@@ -53,7 +53,7 @@ def load_custom_css():
     }
     
     .vso-title {
-        color: white;
+        color: white !important;
         font-size: 2rem;
         font-weight: 600;
         margin: 0;
@@ -318,7 +318,7 @@ Return ONLY a JSON object with these fields (use null if not found):
 """
         
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": extraction_prompt}],
             response_format={"type": "json_object"}
         )
@@ -535,30 +535,12 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🧵 Strategic Threads")
 
-# Thread selector
-thread_ids = list(st.session_state.threads.keys())
-thread_options = {tid: st.session_state.threads[tid]["title"] for tid in thread_ids}
-
-selected = st.sidebar.selectbox(
-    "Select Thread",
-    thread_ids,
-    format_func=lambda x: thread_options[x],
-    key="thread_selector"
-)
-
-if selected != st.session_state.active_thread:
-    st.session_state.active_thread = selected
-    # Load messages for newly selected thread
-    if not st.session_state.threads[selected]["messages"]:
-        st.session_state.threads[selected]["messages"] = load_messages(selected)
-    st.rerun()
-
-# Thread actions
+# Thread actions (MOVED BEFORE SELECTOR)
 col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("➕ New", use_container_width=True):
-        new_id = f"thread_{len(thread_ids)+1}"
-        new_title = f"Thread {len(thread_ids)+1}"
+        new_id = f"thread_{len(st.session_state.threads)+1}"
+        new_title = f"Thread {len(st.session_state.threads)+1}"
         st.session_state.threads[new_id] = {
             "title": new_title,
             "messages": [],
@@ -571,13 +553,41 @@ with col1:
 
 with col2:
     if st.button("🗑️ Delete", use_container_width=True):
-        if len(thread_ids) > 1:
+        if len(st.session_state.threads) > 1:
             delete_thread(active_thread_id)
             del st.session_state.threads[active_thread_id]
             st.session_state.active_thread = list(st.session_state.threads.keys())[0]
             st.rerun()
         else:
             st.sidebar.warning("Cannot delete the last thread")
+
+st.sidebar.markdown("---")
+
+# Thread selector (MOVED AFTER BUTTONS)
+thread_ids = list(st.session_state.threads.keys())
+thread_options = {tid: st.session_state.threads[tid]["title"] for tid in thread_ids}
+
+# Get current thread index for selectbox
+try:
+    current_index = thread_ids.index(st.session_state.active_thread)
+except ValueError:
+    current_index = 0
+    st.session_state.active_thread = thread_ids[0]
+
+selected = st.sidebar.selectbox(
+    "Select Thread",
+    thread_ids,
+    index=current_index,
+    format_func=lambda x: thread_options[x],
+    key="thread_selector"
+)
+
+if selected != st.session_state.active_thread:
+    st.session_state.active_thread = selected
+    # Load messages for newly selected thread
+    if not st.session_state.threads[selected]["messages"]:
+        st.session_state.threads[selected]["messages"] = load_messages(selected)
+    st.rerun()
 
 # -------------------------
 # EXPORT FUNCTIONALITY
@@ -600,9 +610,91 @@ if st.sidebar.button("🔄 Request Fresh Audit", use_container_width=True):
     st.sidebar.success("✅ Audit request logged. Founder will follow up within 24 hours.")
 
 # -------------------------
+# SUGGESTED QUESTIONS (Empty State)
+# -------------------------
+if len(active_thread["messages"]) == 0:
+    st.markdown("### 💡 Try asking VSO:")
+    st.markdown("")
+    
+    # Define suggested questions with emojis and categories
+    suggested_questions = [
+        {
+            "emoji": "🔴",
+            "category": "Critical",
+            "question": "Why is our CSAT declining (3.37 → 2.73) while churn defense is an active priority?"
+        },
+        {
+            "emoji": "⚡",
+            "category": "Decision",
+            "question": "Should I fire my VP of Sales or give them one more quarter?"
+        },
+        {
+            "emoji": "📊",
+            "category": "Analysis",
+            "question": "Is our ₹400 Cr FY28 target realistic given current trajectory?"
+        },
+        {
+            "emoji": "🎯",
+            "category": "Prioritization",
+            "question": "Which is more urgent: fixing CSAT or fixing sales quota achievement?"
+        },
+        {
+            "emoji": "💰",
+            "category": "Capital",
+            "question": "Should we raise a ₹40 Cr bridge round or cut burn by 40%?"
+        },
+        {
+            "emoji": "🔍",
+            "category": "Root Cause",
+            "question": "What's causing our pipeline conversion rate to be only 0.2%?"
+        },
+        {
+            "emoji": "⚠️",
+            "category": "Risk",
+            "question": "Are any of our Top 10 customers in the at-risk CSAT group?"
+        },
+        {
+            "emoji": "📈",
+            "category": "Strategy",
+            "question": "Why are we spending 46% on Product but only 7% on Sales?"
+        }
+    ]
+    
+    # Display questions in a grid (2 columns)
+    for i in range(0, len(suggested_questions), 2):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            q = suggested_questions[i]
+            if st.button(
+                f"{q['emoji']} **{q['category']}**: {q['question']}", 
+                key=f"suggested_{i}",
+                use_container_width=True
+            ):
+                # Trigger the question by setting it as the prompt
+                st.session_state.pending_question = q['question']
+                st.rerun()
+        
+        if i + 1 < len(suggested_questions):
+            with col2:
+                q = suggested_questions[i + 1]
+                if st.button(
+                    f"{q['emoji']} **{q['category']}**: {q['question']}", 
+                    key=f"suggested_{i+1}",
+                    use_container_width=True
+                ):
+                    st.session_state.pending_question = q['question']
+                    st.rerun()
+    
+    st.markdown("")
+    st.markdown("---")
+    st.markdown("**Or ask your own strategic question below:**")
+
+# -------------------------
 # CHAT DISPLAY
 # -------------------------
-st.markdown("---")
+if len(active_thread["messages"]) > 0:
+    st.markdown("---")
 
 # Display chat history
 for msg in active_thread["messages"]:
@@ -612,7 +704,16 @@ for msg in active_thread["messages"]:
 # -------------------------
 # CHAT INPUT WITH ERROR HANDLING
 # -------------------------
-if prompt := st.chat_input("Ask your toughest strategic question…"):
+# Check if there's a pending question from suggested questions
+if "pending_question" in st.session_state:
+    prompt = st.session_state.pending_question
+    del st.session_state.pending_question
+elif prompt := st.chat_input("Ask your toughest strategic question…"):
+    prompt = prompt
+else:
+    prompt = None
+
+if prompt:
     # Add user message
     active_thread["messages"].append({"role": "user", "content": prompt})
     save_message(active_thread_id, "user", prompt)
@@ -657,10 +758,10 @@ CEO Question:
         with st.spinner("🧠 Analyzing with VSO reasoning engine..."):
             try:
                 response = client.chat.completions.create(
-                    model="gpt-4o",  # Using the recommended model
+                    model="gpt-4o-mini",  # Using the recommended model
                     messages=[{"role": "user", "content": full_context}],
                     temperature=0.7,
-                    max_tokens=4000
+                    max_tokens=2000
                 )
                 
                 reply = response.choices[0].message.content
