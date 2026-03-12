@@ -318,7 +318,7 @@ Return ONLY a JSON object with these fields (use null if not found):
 """
         
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4o",
             messages=[{"role": "user", "content": extraction_prompt}],
             response_format={"type": "json_object"}
         )
@@ -506,7 +506,7 @@ st.markdown("""
 st.sidebar.markdown("### 🧬 Intelligence Stack")
 
 # Audit freshness
-audit_date = audit_snapshot.get("last_updated", "2026-01-01")
+audit_date = audit_snapshot.get("audit_metadata", {}).get("last_updated", "2026-03-11")
 freshness, badge_class = freshness_indicator(audit_date)
 
 st.sidebar.markdown(f"""
@@ -535,7 +535,7 @@ else:
 st.sidebar.markdown("---")
 st.sidebar.markdown("### 🧵 Strategic Threads")
 
-# Thread actions (MOVED BEFORE SELECTOR)
+# Thread actions (BEFORE SELECTOR to avoid conflicts)
 col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("➕ New", use_container_width=True):
@@ -563,30 +563,31 @@ with col2:
 
 st.sidebar.markdown("---")
 
-# Thread selector (MOVED AFTER BUTTONS)
+# Thread selector (AFTER BUTTONS, no key parameter to avoid conflicts)
 thread_ids = list(st.session_state.threads.keys())
 thread_options = {tid: st.session_state.threads[tid]["title"] for tid in thread_ids}
 
 # Get current thread index for selectbox
 try:
     current_index = thread_ids.index(st.session_state.active_thread)
-except ValueError:
+except (ValueError, KeyError):
     current_index = 0
-    st.session_state.active_thread = thread_ids[0]
+    st.session_state.active_thread = thread_ids[0] if thread_ids else None
 
-selected = st.sidebar.selectbox(
+# Use index to pre-select, no key parameter
+selected_thread = st.sidebar.selectbox(
     "Select Thread",
     thread_ids,
     index=current_index,
-    format_func=lambda x: thread_options[x],
-    key="thread_selector"
+    format_func=lambda x: thread_options[x]
 )
 
-if selected != st.session_state.active_thread:
-    st.session_state.active_thread = selected
+# Only update and rerun if selection actually changed
+if selected_thread != st.session_state.active_thread:
+    st.session_state.active_thread = selected_thread
     # Load messages for newly selected thread
-    if not st.session_state.threads[selected]["messages"]:
-        st.session_state.threads[selected]["messages"] = load_messages(selected)
+    if not st.session_state.threads[selected_thread]["messages"]:
+        st.session_state.threads[selected_thread]["messages"] = load_messages(selected_thread)
     st.rerun()
 
 # -------------------------
@@ -758,10 +759,10 @@ CEO Question:
         with st.spinner("🧠 Analyzing with VSO reasoning engine..."):
             try:
                 response = client.chat.completions.create(
-                    model="gpt-4o-mini",  # Using the recommended model
+                    model="gpt-4o",
                     messages=[{"role": "user", "content": full_context}],
                     temperature=0.7,
-                    max_tokens=2000
+                    max_tokens=4000
                 )
                 
                 reply = response.choices[0].message.content
